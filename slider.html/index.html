@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .slider {
+        border: 2px solid black;
+        width: 70%;
+        text-align: center;
+        padding: 25px;
+      }
+      .img img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- slider -->
+
+    <div class="slider">
+      <div class="img" style="width: 60%; height: 300px">
+        <img src="" alt="" id="img" />
+      </div>
+      <h2 id="head"></h2>
+      <p id="desc"></p>
+      <button id="prevBtn">Prev</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  const slides = [
+    {
+      image:
+        "https://media.istockphoto.com/id/583809524/photo/alberta-wilderness-near-banff.webp?b=1&s=612x612&w=0&k=20&c=-7tro3UbbvFxXEXlOIZNH7i_C4QQ1LI3jTsPnfi2mNU=",
+      title: "Beautiful Sunset",
+      description:
+        "A stunning sunset over the ocean, with vibrant colors in the sky."
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1500964757637-c85e8a162699?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGxhbmRzY2FwZXxlbnwwfHwwfHx8MA%3D%3D",
+      title: "Mountain Landscape",
+      description:
+        "A majestic view of snow-capped mountains against a clear blue sky."
+    },
+    {
+      image:
+        "https://t3.ftcdn.net/jpg/00/50/13/40/360_F_50134069_oESZdArAXu3vkoixTdtdAfvRNj0fuVmZ.jpg",
+      title: "City Skyline",
+      description:
+        "A bustling city skyline lit up at night, with skyscrapers glowing."
+    },
+    {
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/034/979/467/small_2x/ai-generated-beautiful-landscape-with-green-meadows-and-blue-sky-with-clouds-photo.jpg",
+      title: "Forest Walk",
+      description:
+        "A peaceful walk through a lush green forest, with sunlight filtering through the trees."
+    }
+  ];
+
+  console.log(slides[0].image);
+  console.log(slides[0].title);
+  console.log(slides[0].description);
+
+  let currentIndex = 0;
+
+  function ShowSlide() {
+    document.getElementById("img").src = slides[currentIndex].image;
+    document.getElementById("head").innerHTML = slides[currentIndex].title;
+    document.getElementById("desc").innerHTML =
+      slides[currentIndex].description;
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    currentIndex++;
+    if (currentIndex >= slides.length) {
+      currentIndex = 0;
+    }
+    ShowSlide();
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = slides.length - 1;
+    }
+    ShowSlide();
+  });
+
+  setInterval(() => {
+    currentIndex++;
+    if (currentIndex >= slides.length) {
+      currentIndex = 0;
+    }
+    ShowSlide();
+  }, 5000);
+
+  ShowSlide();
+</script>
